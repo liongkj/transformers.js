@@ -22,6 +22,8 @@ from onnxruntime.quantization import (
 )
 
 
+
+
 @dataclass
 class ConversionArguments:
     """
@@ -49,11 +51,8 @@ class ConversionArguments:
     task: Optional[str] = field(
         default='auto',
         metadata={
-            "help": (
-                "The task to export the model for. If not specified, the task will be auto-inferred based on the model. Available tasks depend on the model, but are among:"
-                f" {str(list(TasksManager._TASKS_TO_AUTOMODELS.keys()))}. For decoder models, use `xxx-with-past` to export the model using past key values in the decoder."
-            )
-        }
+            "help": f"The task to export the model for. If not specified, the task will be auto-inferred based on the model. Available tasks depend on the model, but are among: {list(TasksManager._TASKS_TO_AUTOMODELS.keys())}. For decoder models, use `xxx-with-past` to export the model using past key values in the decoder."
+        },
     )
 
     opset: int = field(
